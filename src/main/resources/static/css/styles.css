@@ -1,0 +1,113 @@
+/* general */
+
+body {
+    margin: 5px auto;
+    width: 80%;
+    height: 100%;
+}
+
+/* navbar */
+
+.navbar {
+    border-top: 2px black solid;
+    border-bottom: 2px black solid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.nav-search {
+    display: flex;
+    margin-left: 5px;
+}
+
+.nav-search-button {
+    width: 25px;
+    margin: 10px;
+    padding-left: 3px;
+
+}
+
+.nav-search-box {
+    margin: 5px 0px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #4b4f4f;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 4px;
+    transition: 0.3s;
+}
+
+.site-title:hover {
+    text-decoration: underline overline;
+}
+
+.site-title {
+    color: crimson;
+    text-decoration: none;
+    font-size: 2rem;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    border-radius: 3px;
+    background-color: #9e9e9e;
+    color: #ffffff;
+}
+
+/* homepage */
+
+.homepage-container {
+    width: 90%;
+    margin: 0px auto;
+}
+
+.homepage-welcome {
+
+}
+
+.welcome-title {
+
+}
+
+.post-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.post-card {
+    border-top: 3px black solid;
+    border-bottom: 3px black solid;
+    width: 30%;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    }
+
+.post-image {
+    width: 100%;
+}
+
+.card-text-content {
+    padding: 5px;
+}
+
+/* footer */
+
+.footer-container {
+    margin-top: 5px;
+    padding-top: 10px;
+    background-color: grey;
+    border-top: 2px black solid;
+}
+
+.copyright {
+    text-align: center;
+    margin-bottom: 5px;
+}
