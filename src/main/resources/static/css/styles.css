@@ -56,9 +56,7 @@ body {
 }
 
 .nav-link:hover {
-    border-radius: 3px;
-    background-color: #9e9e9e;
-    color: #ffffff;
+    text-decoration: underline overline;
 }
 
 /* homepage */
@@ -88,6 +86,8 @@ body {
     width: 30%;
     margin-bottom: 10px;
     padding-bottom: 10px;
+    background-color: #929cad;
+    box-shadow: 0px 5px 5px #ccc;
     }
 
 .post-image {
@@ -96,6 +96,66 @@ body {
 
 .card-text-content {
     padding: 5px;
+}
+
+/* new post */
+
+.hidden-label {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.title-box {
+    outline: none;
+    border: none;
+    margin: 20px 0px;
+    padding-bottom: 0px;
+    font-size: 2rem;
+    width: 80%;
+    border-bottom: 2px solid #ccc;
+}
+
+.post-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.description-box {
+    outline: none;
+    border: 1px solid #ccc;
+    resize: none;
+    margin: 20px 0px;
+    width: 45%;
+    height:3rem;
+    font-size: 0.9rem;
+    font-family: Helvetica, Arial, sans-serif;
+    border-bottom: 2px solid #ccc;
+}
+
+.url-box {
+    outline: none;
+    border: none;
+    margin: 10px 0px;
+    margin-top: 3rem;
+    padding-bottom: 0px;
+    font-size: 1rem;
+    font-family: Helvetica, Arial, sans-serif;
+    width: 45%;
+    height: 1rem;
+    border-bottom: 2px solid #ccc;
+}
+
+.post-content-box {
+ width: 100%;
+ height: 80vh;
+ resize: vertical;
 }
 
 /* footer */
@@ -109,5 +169,26 @@ body {
 
 .copyright {
     text-align: center;
-    margin-bottom: 5px;
+    padding-bottom: 8px;
 }
+
+/* buttons */
+
+.read-more-button {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    text-decoration: none;
+    color: #4b4f4f;
+    padding: 10px 0px;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-top: 2px #ccc solid;
+    border-bottom: 2px #ccc solid;
+}
+
+.read-more-button:hover {
+     border-top: 2px #787878 solid;
+     border-bottom: 2px #787878 solid;
+}
+
