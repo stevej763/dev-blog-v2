@@ -1,30 +1,34 @@
 {{>partials/header}}
 {{>partials/navbar}}
 <main>
-<form action="new-post">
-    <div>
-        <label class="hidden-label" for="title">Title</label>
-        <input id="title" class="title-box" type="text" placeholder="title" maxlength="50">
-    </div>
-    <div class="post-details">
-        <label class="hidden-label" for="description">Description</label>
-        <textarea id="description" class="description-box" placeholder="Write a short description, max 150 words." maxlength="150"></textarea>
-        <label class="hidden-label" for="header-image-url">Header Image Url</label>
-        <input id="header-image-url" class="url-box" type="text" placeholder="header image url">
-    </div>
-    <div>
-        <label class="hidden-label" for="content">Content</label>
-        <textarea class="post-content-box" id="content"></textarea>
-    </div>
-    <div>
-        <label class="visible-label" for="category">Category</label>
-        <select id="category">
-            <option>One</option>
-            <option>Two</option>
-            <option>Three</option>
-        </select>
-    </div>
-</form>
+    <h1>Add a new post</h1>
+    <form action="/new-post" method="post">
+        <div>
+            <label class="hidden-label" for="title">Title</label>
+            <input id="title" class="title-box" type="text" placeholder="title" maxlength="50" name="title">
+        </div>
+        <div class="post-details">
+            <label class="hidden-label" for="description">Description</label>
+            <textarea id="description" class="description-box" placeholder="Write a short description, max 150 words." maxlength="150" name="description"></textarea>
+            <label class="hidden-label" for="header-image-url">Header Image Url</label>
+            <input id="header-image-url" class="url-box" type="text" placeholder="header image url" name="headerImageUrl">
+        </div>
+        <div>
+            <label class="hidden-label" for="content">Content</label>
+            <textarea class="post-content-box" id="content" name="postContent"></textarea>
+        </div>
+        <div>
+            <label class="visible-label" for="category">Category</label>
+            <select id="category" name="category">
+                <option value="BUILD_LOG">Build Log</option>
+                <option value="TESTING">Testing</option>
+                <option value="DESIGN_PATTERNS">Design Patterns</option>
+            </select>
+        </div>
+        <div class="new-post-submit">
+            <input class="new-post-submit-button" type="submit" value="Add Post">
+        </div>
+    </form>
 
 </main>
 {{>partials/footer}}

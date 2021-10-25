@@ -4,7 +4,14 @@ body {
     margin: 5px auto;
     width: 80%;
     height: 100%;
+    font-family: Helvetica, Arial, sans-serif;
 }
+
+h1, h2, h3 {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+
 
 /* navbar */
 
@@ -52,6 +59,7 @@ body {
     color: crimson;
     text-decoration: none;
     font-size: 2rem;
+    font-family: Helvetica, Arial, sans-serif;
     transition: 0.3s;
 }
 
@@ -153,9 +161,27 @@ body {
 }
 
 .post-content-box {
- width: 100%;
+ width: 99.7%;
  height: 80vh;
- resize: vertical;
+ resize: none;
+}
+
+.new-post-submit {
+    display: flex;
+    justify-content: right;
+}
+
+.new-post-submit-button {
+    padding: 8px;
+    margin: 10px 0px;
+    font-size: 1rem;
+    background-color: #ccc;
+    border-radius: 2px;
+    border: none;
+}
+
+.new-post-submit-button:hover {
+    color: #ffffff;
 }
 
 /* footer */
