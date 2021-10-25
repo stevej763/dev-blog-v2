@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @ActiveProfiles("test")
 @SpringBootTest
 @AutoConfigureMockMvc
-public class NewPostControllerTest {
+public class NewPostResponseControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

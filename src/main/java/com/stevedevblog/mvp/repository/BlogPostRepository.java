@@ -1,6 +1,11 @@
 package com.stevedevblog.mvp.repository;
 
+import com.stevedevblog.mvp.domain.PersistedBlogPost;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Component;
 
-public interface BlogPostRepository extends MongoRepository {
+import java.util.UUID;
+
+@Component
+public interface BlogPostRepository extends MongoRepository<PersistedBlogPost, UUID> {
 }
