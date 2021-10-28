@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class PersistedBlogPost {
 
-    private final UUID id;
+    private final String id;
     private final String title;
     private final String description;
     private final String headerImageUrl;
@@ -14,7 +14,7 @@ public class PersistedBlogPost {
     private final Date publishDate;
     private final PostCategory category;
 
-    public PersistedBlogPost(UUID id,
+    public PersistedBlogPost(String id,
                              String title,
                              String description,
                              String headerImageUrl,
@@ -50,7 +50,7 @@ public class PersistedBlogPost {
         return category;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 

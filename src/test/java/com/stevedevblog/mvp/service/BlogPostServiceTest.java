@@ -25,7 +25,7 @@ public class BlogPostServiceTest {
 //  onto the repo. There is probably a good way around this, but for now it isn't the main focus. If I had a factory or a builder
 //  mocked, I could stub an object as a response which I supposed is one way to do it.
 
-        UUID id = UUID.randomUUID();
+        String id = UUID.randomUUID().toString();
         Date publishDate = new Date();
         PersistedBlogPost realPost = new PersistedBlogPost(
                 id,
