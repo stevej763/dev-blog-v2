@@ -7,6 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.commonmark.node.*;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
 
 import java.util.Optional;
 
@@ -24,17 +27,18 @@ public class ReadPostController {
     @GetMapping("{id}")
     public String getReadPostPage(@PathVariable String id, Model model) {
         Optional<PersistedBlogPost> post = blogPostService.getPostById(id);
-        if (post.isPresent()) {
-
-            return returnPage(id, model, post);
-        } else {
-            return "redirect:/";
-        }
+        return post.map(persistedBlogPost -> returnPage(id, model, persistedBlogPost)).orElse("redirect:/");
     }
 
-    private String returnPage(String id, Model model, Optional<PersistedBlogPost> post) {
-        model.addAttribute("pageTitle", id);
-        model.addAttribute("post", post.get());
+    private String returnPage(String id, Model model, PersistedBlogPost post) {
+        String content = post.getPostContent();
+        Parser parser = Parser.builder().build();
+        Node document = parser.parse(content);
+        HtmlRenderer renderer = HtmlRenderer.builder().build();
+        String markup = renderer.render(document);
+        model.addAttribute("pageTitle", post.getTitle());
+        model.addAttribute("post", post);
+        model.addAttribute("markup-content", markup);
         return "read-post";
     }
 
