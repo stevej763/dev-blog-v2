@@ -49,6 +49,14 @@
     font-size: 21px
 }
 
+.markdown-content code {
+    font-size: 19px;
+    padding: 1px 4px;
+    background-color: #4b4f4f;
+    border-radius: 2px;
+    color: coral
+}
+
 .markdown-content img {
     display: block;
     margin: auto;
