@@ -1,5 +1,6 @@
 package com.stevedevblog.mvp.service;
 
+import com.stevedevblog.mvp.domain.EditPostResponse;
 import com.stevedevblog.mvp.domain.NewPostResponse;
 import com.stevedevblog.mvp.domain.PersistedBlogPost;
 import com.stevedevblog.mvp.domain.PersistedBlogPostBuilder;
@@ -43,7 +44,22 @@ public class BlogPostService {
         return posts;
     }
 
+    public PersistedBlogPost updatePost(EditPostResponse editPostResponse) {
+        System.out.println(editPostResponse.getId());
+        PersistedBlogPost postUpdate = new PersistedBlogPost(
+                editPostResponse.getId(),
+                editPostResponse.getTitle(),
+                editPostResponse.getDescription(),
+                editPostResponse.getHeaderImageUrl(),
+                editPostResponse.getPostContent(),
+                editPostResponse.getPublishDate(),
+                editPostResponse.getCategory()
+                );
+        return blogPostRepository.save(postUpdate);
+    }
+
     public Optional<PersistedBlogPost> getPostById(String id) {
         return blogPostRepository.findById(id);
     }
+
 }

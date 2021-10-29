@@ -1,0 +1,35 @@
+{{>partials/header}}
+{{>partials/navbar}}
+<main>
+    <h1>Edit Post</h1>
+    <form action="/edit-post" method="post">
+        <div>
+            <label class="hidden-label" for="title">Title</label>
+            <input id="title" class="title-box" type="text" placeholder="title" maxlength="50" name="title" value="{{postTitle}}">
+        </div>
+        <div class="post-details">
+            <label class="hidden-label" for="description">Description</label>
+            <textarea id="description" class="description-box" placeholder="Write a short description, max 150 words." maxlength="150" name="description">{{postDescription}}</textarea>
+            <label class="hidden-label" for="header-image-url">Header Image Url</label>
+            <input id="header-image-url" class="url-box" type="text" placeholder="header image url" name="headerImageUrl" value="{{postHeaderImage}}">
+        </div>
+        <div>
+            <label class="hidden-label" for="content">Content</label>
+            <textarea class="post-content-box" id="content" name="postContent">{{postContent}}</textarea>
+        </div>
+        <div>
+            <label class="visible-label" for="category">Category</label>
+            <select id="category" name="category">
+                <option value="BUILD_LOG">Build Log</option>
+                <option value="TESTING">Testing</option>
+                <option value="DESIGN_PATTERNS">Design Patterns</option>
+            </select>
+        </div>
+        <div class="new-post-submit">
+            <input type="hidden"  id="id" value="{{postId}}">
+            <input class="new-post-submit-button" type="submit" value="Update Post">
+        </div>
+    </form>
+
+</main>
+{{>partials/footer}}

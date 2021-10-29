@@ -2,23 +2,24 @@ package com.stevedevblog.mvp.domain;
 
 import java.util.Date;
 
-public class PersistedBlogPost {
+public class EditPostResponse {
 
+
+    private final PostCategory category;
     private final String id;
     private final String title;
     private final String description;
     private final String headerImageUrl;
     private final String postContent;
     private final Date publishDate;
-    private final PostCategory category;
 
-    public PersistedBlogPost(String id,
-                             String title,
-                             String description,
-                             String headerImageUrl,
-                             String postContent,
-                             Date publishDate,
-                             PostCategory category) {
+    public EditPostResponse(String id,
+                            String title,
+                            String description,
+                            String headerImageUrl,
+                            String postContent,
+                            Date publishDate,
+                            PostCategory category) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -26,6 +27,14 @@ public class PersistedBlogPost {
         this.postContent = postContent;
         this.publishDate = publishDate;
         this.category = category;
+    }
+
+    public PostCategory getCategory() {
+        return category;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -44,28 +53,20 @@ public class PersistedBlogPost {
         return postContent;
     }
 
-    public PostCategory getCategory() {
-        return category;
-    }
-
-    public String getId() {
-        return id;
-    }
-
     public Date getPublishDate() {
         return publishDate;
     }
 
     @Override
     public String toString() {
-        return "PersistedBlogPost{" +
-                "id='" + id + '\'' +
+        return "EditPostResponse{" +
+                "category=" + category +
+                ", id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", headerImageUrl='" + headerImageUrl + '\'' +
                 ", postContent='" + postContent + '\'' +
                 ", publishDate=" + publishDate +
-                ", category=" + category +
                 '}';
     }
 }

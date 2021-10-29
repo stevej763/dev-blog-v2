@@ -94,7 +94,6 @@
     background: #f4f4f4;
     border: 1px solid #ddd;
     border-left: 3px solid #f36d33;
-    color: #666;
     page-break-inside: avoid;
     font-family: monospace;
     font-size: 15px;
@@ -105,4 +104,12 @@
     padding: 1em 1.5em;
     display: block;
     word-wrap: break-word;
+}
+
+.markdown-content pre code {
+    font-size: 15px;
+    padding: 0;
+    background-color: transparent;
+    border-radius: none;
+    color: #666;
 }

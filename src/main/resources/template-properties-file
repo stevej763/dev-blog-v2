@@ -1,0 +1,5 @@
+logging.level.web
+logging.level.org.springframework.data.mongodb.core.MongoTemplate
+server.port
+
+spring.data.mongodb.uri
