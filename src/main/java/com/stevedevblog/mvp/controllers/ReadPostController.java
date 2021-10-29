@@ -35,10 +35,10 @@ public class ReadPostController {
         Parser parser = Parser.builder().build();
         Node document = parser.parse(content);
         HtmlRenderer renderer = HtmlRenderer.builder().build();
-        String markup = renderer.render(document);
+        String markdown = renderer.render(document);
         model.addAttribute("pageTitle", post.getTitle());
         model.addAttribute("post", post);
-        model.addAttribute("markup-content", markup);
+        model.addAttribute("markdown-content", markdown);
         return "read-post";
     }
 
