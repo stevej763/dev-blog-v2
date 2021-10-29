@@ -1,10 +1,16 @@
 {{>partials/header}}
 {{>partials/navbar}}
 <main>
-    {{#post}}
-        {{title}}
-        {{description}}
-        <div class="markdown-content">{{{markdown-content}}}</div>
-    {{/post}}
+    <div class="post-container">
+        {{#post}}
+            <div class="header-image-container">
+                <img class="post-header-image" src="{{headerImageUrl}}"/>
+            </div>
+            <h1 class="post-title">{{title}}</h1>
+            <p class="post-description">{{description}}</p>
+            <hr class="post-ruler">
+            <div class="markdown-content">{{{markdown-content}}}</div>
+        {{/post}}
+    </div>
 </main>
 {{>partials/footer}}

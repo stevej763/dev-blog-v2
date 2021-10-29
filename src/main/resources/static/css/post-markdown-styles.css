@@ -1,0 +1,100 @@
+
+.post-container {
+    font-family: charter, Georgia, Cambria, "Times New Roman", Times, serif;
+    margin: 0px auto;
+    width: 65%;
+}
+
+.header-image-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.post-header-image {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.post-title {
+    font-size: 35px;
+    font-weight: 900;
+    margin: 40px auto;
+    margin-bottom: 5px;
+    width: 100%
+}
+
+.post-description {
+    margin-top: 0px;
+    color: rgba(117, 117, 117, 1);
+}
+
+.post-ruler {
+   width: 80%;
+   border: 0;
+   height: 2px;
+   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+.markdown-content {
+
+
+}
+
+.markdown-content p {
+    font-size: 21px
+}
+
+.markdown-content li {
+    font-size: 21px
+}
+
+.markdown-content img {
+    display: block;
+    margin: auto;
+    max-width: 80%;
+}
+
+.markdown-content table {
+    border-collapse: collapse;
+    margin: 25px auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.markdown-content thead tr {
+    background-color: #4b4f4f;
+    color: #ffffff;
+    text-align: left;
+}
+
+.markdown-content th, td {
+    padding: 12px 15px;
+}
+
+.markdown-content tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.markdown-content tbody tr:last-of-type {
+    border-bottom: 2px solid #ed143d;
+}
+
+.markdown-content pre {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #f36d33;
+    color: #666;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
+}

@@ -48,7 +48,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.commonmark</groupId>
-			<artifactId>commonmark</artifactId>
+			<artifactId>commonmark-ext-gfm-tables</artifactId>
+			<version>0.18.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.commonmark</groupId>
+			<artifactId>commonmark-ext-image-attributes</artifactId>
 			<version>0.18.0</version>
 		</dependency>
 	</dependencies>
