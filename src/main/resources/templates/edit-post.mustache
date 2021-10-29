@@ -18,7 +18,7 @@
             <textarea class="post-content-box" id="content" name="postContent">{{postContent}}</textarea>
         </div>
         <div>
-            <label class="visible-label" for="category">Category</label>
+            <label class="visible-label" for="category">Category (Make sure to check this before saving (Currently does not populate from original post!))</label>
             <select id="category" name="category">
                 <option value="BUILD_LOG">Build Log</option>
                 <option value="TESTING">Testing</option>
@@ -26,7 +26,7 @@
             </select>
         </div>
         <div class="new-post-submit">
-            <input type="hidden"  id="id" value="{{postId}}">
+            <input type="hidden" id="id" name="id" value="{{postId}}">
             <input class="new-post-submit-button" type="submit" value="Update Post">
         </div>
     </form>

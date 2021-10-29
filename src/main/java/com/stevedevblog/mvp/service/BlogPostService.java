@@ -5,6 +5,8 @@ import com.stevedevblog.mvp.domain.NewPostResponse;
 import com.stevedevblog.mvp.domain.PersistedBlogPost;
 import com.stevedevblog.mvp.domain.PersistedBlogPostBuilder;
 import com.stevedevblog.mvp.repository.BlogPostRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
@@ -13,6 +15,8 @@ import java.util.Optional;
 
 @Component
 public class BlogPostService {
+
+    Logger LOGGER = LoggerFactory.getLogger(BlogPostService.class);
 
     private final BlogPostRepository blogPostRepository;
 
@@ -23,6 +27,7 @@ public class BlogPostService {
     public PersistedBlogPost addPost(NewPostResponse newPostResponse) {
         PersistedBlogPost persistedBlogPost = convertToPersistedObject(newPostResponse);
         try {
+            LOGGER.info("adding post with id: {}", persistedBlogPost.getId());
             return blogPostRepository.insert(persistedBlogPost);
         } catch (Exception e) {
             return null;
@@ -45,7 +50,6 @@ public class BlogPostService {
     }
 
     public PersistedBlogPost updatePost(EditPostResponse editPostResponse) {
-        System.out.println(editPostResponse.getId());
         PersistedBlogPost postUpdate = new PersistedBlogPost(
                 editPostResponse.getId(),
                 editPostResponse.getTitle(),
@@ -55,10 +59,12 @@ public class BlogPostService {
                 editPostResponse.getPublishDate(),
                 editPostResponse.getCategory()
                 );
+        LOGGER.info("updating post with id: {}", postUpdate.getId());
         return blogPostRepository.save(postUpdate);
     }
 
     public Optional<PersistedBlogPost> getPostById(String id) {
+        LOGGER.info("finding post with id: {}", id);
         return blogPostRepository.findById(id);
     }
 

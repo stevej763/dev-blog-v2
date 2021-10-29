@@ -5,13 +5,13 @@ import java.util.Date;
 public class EditPostResponse {
 
 
-    private final PostCategory category;
     private final String id;
     private final String title;
     private final String description;
     private final String headerImageUrl;
     private final String postContent;
     private final Date publishDate;
+    private final PostCategory category;
 
     public EditPostResponse(String id,
                             String title,
@@ -55,18 +55,5 @@ public class EditPostResponse {
 
     public Date getPublishDate() {
         return publishDate;
-    }
-
-    @Override
-    public String toString() {
-        return "EditPostResponse{" +
-                "category=" + category +
-                ", id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", headerImageUrl='" + headerImageUrl + '\'' +
-                ", postContent='" + postContent + '\'' +
-                ", publishDate=" + publishDate +
-                '}';
     }
 }

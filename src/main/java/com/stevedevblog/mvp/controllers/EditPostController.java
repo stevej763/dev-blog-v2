@@ -3,6 +3,8 @@ package com.stevedevblog.mvp.controllers;
 import com.stevedevblog.mvp.domain.EditPostResponse;
 import com.stevedevblog.mvp.domain.PersistedBlogPost;
 import com.stevedevblog.mvp.service.BlogPostService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,14 +45,12 @@ public class EditPostController {
     }
 
     @PostMapping
-    public String postNewPost(EditPostResponse editPostResponse) {
-        System.out.println(editPostResponse.toString());
+    public String postEditBlogPostForm(EditPostResponse editPostResponse) {
         PersistedBlogPost result = blogPostService.updatePost(editPostResponse);
         if (result == null) {
             System.out.println("TODO handle this better.");
             System.out.println("There was an error adding new post.");
         }
-        System.out.println("Post was updated");
         return "redirect:/";
     }
 

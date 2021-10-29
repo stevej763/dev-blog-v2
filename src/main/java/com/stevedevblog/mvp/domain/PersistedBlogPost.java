@@ -55,17 +55,4 @@ public class PersistedBlogPost {
     public Date getPublishDate() {
         return publishDate;
     }
-
-    @Override
-    public String toString() {
-        return "PersistedBlogPost{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", headerImageUrl='" + headerImageUrl + '\'' +
-                ", postContent='" + postContent + '\'' +
-                ", publishDate=" + publishDate +
-                ", category=" + category +
-                '}';
-    }
 }
