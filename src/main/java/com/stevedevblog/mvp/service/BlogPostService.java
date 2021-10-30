@@ -51,6 +51,9 @@ public class BlogPostService {
 
     public List<PersistedBlogPost> getLatestPosts(int numberOfPosts) {
         List<PersistedBlogPost> posts = getPosts();
+        if(posts.size() < numberOfPosts) {
+            return posts.subList(0, posts.size());
+        }
         return posts.subList(0, numberOfPosts);
     }
 
