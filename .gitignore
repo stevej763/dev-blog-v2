@@ -34,5 +34,6 @@ build/
 
 ## Properties files
 application.properties
+application-prod.properties
 application-dev.properties
 application-test.properties

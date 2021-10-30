@@ -66,6 +66,31 @@ h1, h2, h3 {
     text-decoration: underline overline;
 }
 
+/* login */
+.login-container {
+    display: flex;
+    width: 40%;
+    margin: 40px auto;
+    padding: 20px 0;
+    justify-content: center;
+    align-content:center;
+    background-color: antiquewhite;
+    border-top: 5px #787878 solid;
+    border-bottom: 5px #787878 solid;
+}
+
+.login-input-field {
+    outline: none;
+    padding: 10px;
+    display: block;
+    margin: 10px;
+}
+
+.login-submit-container {
+    display: flex;
+    justify-content: center;
+}
+
 /* homepage */
 
 .homepage-container {
@@ -201,6 +226,20 @@ h1, h2, h3 {
 }
 
 /* buttons */
+
+.login-button {
+    width: 100%;
+    margin: 10px;
+    text-decoration: none;
+    padding: 10px 0px;
+    background-color: #FFFFFF;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.login-button:hover {
+    border: 2px solid #ed143d;
+}
 
 .read-more-button {
     display: inline-block;

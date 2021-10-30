@@ -1,10 +1,17 @@
 {{>partials/header}}
 {{>partials/navbar}}
 <main>
-    <form action="/login" method="post">
-        <div><label> User Name : <input type="text" name="username"/> </label></div>
-        <div><label> Password: <input type="password" name="password"/> </label></div>
-        <div><input type="submit" value="Sign In"/></div>
-    </form>
+    <div class="login-container">
+        <form action="/login" method="post">
+            <label class="hidden-label" for="username"></label>
+            <input class="login-input-field" id="username" type="text" name="username" placeholder="Username"/>
+            <label class="hidden-label" for="password"></label>
+            <input class="login-input-field" id="password" type="password" name="password" placeholder="Password"/>
+            <div class="login-submit-container">
+                <input class="login-button" type="submit" value="Login"/>
+            </div>
+        </form>
+    </div>
+
 </main>
 {{>partials/footer}}
