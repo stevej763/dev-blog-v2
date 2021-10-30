@@ -1,5 +1,8 @@
 # Dev Blog v2
 
+## Access the live site at this address:
+[stevedevblog](https://stevedevblog.com)
+
 ## First draft of the Homepage
 ![new-post-page](docs/homepage-basic-layout.png)
 
