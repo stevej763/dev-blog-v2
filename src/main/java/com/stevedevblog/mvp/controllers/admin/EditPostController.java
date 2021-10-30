@@ -1,10 +1,8 @@
-package com.stevedevblog.mvp.controllers;
+package com.stevedevblog.mvp.controllers.admin;
 
 import com.stevedevblog.mvp.domain.EditPostResponse;
 import com.stevedevblog.mvp.domain.PersistedBlogPost;
 import com.stevedevblog.mvp.service.BlogPostService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,7 +36,7 @@ public class EditPostController {
             model.addAttribute("postContent", post.getPostContent());
             model.addAttribute("publishDate", post.getPublishDate());
             model.addAttribute("postCategory", post.getCategory());
-            return "edit-post";
+            return "admin/edit-post";
         } else {
             return "redirect:/";
         }

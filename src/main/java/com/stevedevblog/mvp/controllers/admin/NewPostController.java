@@ -1,4 +1,4 @@
-package com.stevedevblog.mvp.controllers;
+package com.stevedevblog.mvp.controllers.admin;
 
 import com.stevedevblog.mvp.domain.NewPostResponse;
 import com.stevedevblog.mvp.domain.PersistedBlogPost;
@@ -23,7 +23,7 @@ public class NewPostController {
     @GetMapping
     public String getNewPostPage(Model model) {
         model.addAttribute("pageTitle", "New Post");
-        return "new-post";
+        return "admin/new-post";
     }
 
     @PostMapping

@@ -1,7 +1,7 @@
 package com.stevedevblog.mvp;
 
 import com.stevedevblog.mvp.controllers.HomeController;
-import com.stevedevblog.mvp.controllers.NewPostController;
+import com.stevedevblog.mvp.controllers.admin.NewPostController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
