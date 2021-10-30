@@ -1,10 +1,14 @@
 package com.stevedevblog.mvp.domain;
 
+import org.springframework.data.annotation.Id;
+
 import java.util.Date;
 
 public class PersistedBlogPost {
 
+    @Id
     private final String id;
+
     private final String title;
     private final String description;
     private final String headerImageUrl;

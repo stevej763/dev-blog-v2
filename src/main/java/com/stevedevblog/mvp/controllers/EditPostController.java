@@ -36,6 +36,7 @@ public class EditPostController {
             model.addAttribute("postDescription", post.getDescription());
             model.addAttribute("postHeaderImage", post.getHeaderImageUrl());
             model.addAttribute("postContent", post.getPostContent());
+            model.addAttribute("publishDate", post.getPublishDate());
             model.addAttribute("postCategory", post.getCategory());
             return "edit-post";
         } else {
@@ -49,7 +50,7 @@ public class EditPostController {
         PersistedBlogPost result = blogPostService.updatePost(editPostResponse);
         if (result == null) {
             System.out.println("TODO handle this better.");
-            System.out.println("There was an error adding new post.");
+            System.out.println("There was an error updating the post.");
         }
         return "redirect:/";
     }

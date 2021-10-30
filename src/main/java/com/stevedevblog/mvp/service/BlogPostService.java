@@ -49,18 +49,30 @@ public class BlogPostService {
         return posts;
     }
 
+    public List<PersistedBlogPost> getLatestPosts(int numberOfPosts) {
+        List<PersistedBlogPost> posts = getPosts();
+        return posts.subList(0, numberOfPosts);
+    }
+
     public PersistedBlogPost updatePost(EditPostResponse editPostResponse) {
-        PersistedBlogPost postUpdate = new PersistedBlogPost(
-                editPostResponse.getId(),
-                editPostResponse.getTitle(),
-                editPostResponse.getDescription(),
-                editPostResponse.getHeaderImageUrl(),
-                editPostResponse.getPostContent(),
-                editPostResponse.getPublishDate(),
-                editPostResponse.getCategory()
-                );
-        LOGGER.info("updating post with id: {}", postUpdate.getId());
-        return blogPostRepository.save(postUpdate);
+        Optional<PersistedBlogPost> optionalOriginalPost = blogPostRepository.findById(editPostResponse.getId());
+        if(optionalOriginalPost.isPresent()) {
+            PersistedBlogPost originalPost = optionalOriginalPost.get();
+            PersistedBlogPost postUpdate = new PersistedBlogPost(
+                    editPostResponse.getId(),
+                    editPostResponse.getTitle(),
+                    editPostResponse.getDescription(),
+                    editPostResponse.getHeaderImageUrl(),
+                    editPostResponse.getPostContent(),
+                    originalPost.getPublishDate(),
+                    originalPost.getCategory()
+            );
+            LOGGER.info("updating post with id: {}", postUpdate.getId());
+            return blogPostRepository.save(postUpdate);
+        }
+        LOGGER.error("Error when updating post with id: {}", editPostResponse.getId());
+        return null;
+
     }
 
     public Optional<PersistedBlogPost> getPostById(String id) {

@@ -9,75 +9,35 @@
             </p>
         </div>
         <div>
-            <h2>Real Posts</h2>
+            <h2>Latest Posts</h2>
             <div class="post-list">
-                {{#posts}}
+                {{#latestPosts}}
                     <div class="post-card">
                         <img class="post-image" src={{headerImageUrl}}>
                         <div class="card-text-content">
                             <h2>{{title}}</h2>
                             <p>{{description}}</p>
                             <p>category: {{category.value}}</p>
+                            <p>published: {{publishDate}}</p>
                         </div>
                         <a class="read-more-button" href="/blog-post/{{id}}">Read more -></a>
                     </div>
-                {{/posts}}
+                {{/latestPosts}}
             </div>
             <h2>Featured Posts</h2>
             <div class="post-list">
-                <div class="post-card">
-                    <img class="post-image" src="https://images.unsplash.com/photo-1481349518771-20055b2a7b24?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cmFuZG9tfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80">
-                    <div class="card-text-content">
-                        <p>Post Title</p>
-                        <p>This is a short description</p>
+                {{#featuredPosts}}
+                    <div class="post-card">
+                        <img class="post-image" src={{headerImageUrl}}>
+                        <div class="card-text-content">
+                            <h2>{{title}}</h2>
+                            <p>{{description}}</p>
+                            <p>category: {{category.value}}</p>
+                            <p>published: {{publishDate}}</p>
+                        </div>
+                        <a class="read-more-button" href="/blog-post/{{id}}">Read more -></a>
                     </div>
-                    <a class="read-more-button" href="/">Read more -></a>
-                </div>
-                <div class="post-card">
-                    <img class="post-image" src="https://images.unsplash.com/photo-1481349518771-20055b2a7b24?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cmFuZG9tfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80">
-                    <div class="card-text-content">
-                        <p>Post Title</p>
-                        <p>This is a short description</p>
-                    </div>
-                    <a class="read-more-button" href="/">Read more -></a>
-                </div>
-                <div class="post-card">
-                    <img class="post-image" src="https://images.unsplash.com/photo-1481349518771-20055b2a7b24?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cmFuZG9tfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80">
-                    <div class="card-text-content">
-                        <p>Post Title</p>
-                        <p>This is a short description</p>
-                    </div>
-                    <a class="read-more-button" href="/">Read more -></a>
-                </div>
-            </div>
-        </div>
-        <div>
-            <h2>Top Reads</h2>
-            <div class="post-list">
-                <div class="post-card">
-                    <img class="post-image" src="https://images.unsplash.com/photo-1579613832125-5d34a13ffe2a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80">
-                    <div class="card-text-content">
-                        <p>Post Title</p>
-                        <p>This is a short description</p>
-                    </div>
-                    <a class="read-more-button" href="/">Read more -></a>
-                </div>
-                <div class="post-card">
-                    <img class="post-image" src="https://images.unsplash.com/photo-1579613832125-5d34a13ffe2a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80">
-                    <div class="card-text-content">
-                        <p>Post Title</p>
-                        <p>This is a short description</p>
-                    </div>
-                    <a class="read-more-button" href="/">Read more -></a>
-                </div>
-                <div class="post-card">
-                    <img class="post-image" src="https://images.unsplash.com/photo-1579613832125-5d34a13ffe2a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80">
-                    <div class="card-text-content">
-                        <p>Post Title</p>
-                        <p>This is a short description</p>
-                    </div>
-                    <a class="read-more-button" href="/">Read more -></a>
-                </div>
+                {{/featuredPosts}}
             </div>
         </div>
     </div>
