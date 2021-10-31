@@ -14,7 +14,7 @@ docker buildx build --platform linux/amd64 --push -t steve763/deployment .
 ## On deployment server (EC2 instance)
 1. Pull the latest image from the image repository: `docker pull steve763/deployment`
 2. Stop the old container `docker stop steve-dev-blog`
-3. Remove the old container so you can reuse the name: `docker rm steve-dev-blog`
+3. Remove the old container, so you can reuse the name: `docker rm steve-dev-blog`
 4. Start up the latest image:
    -Note: docker exposes the server on port 8080, Nginx proxies this connection to 80 and 443 for external connection
 ```
