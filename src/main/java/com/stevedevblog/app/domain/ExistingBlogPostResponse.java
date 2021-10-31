@@ -1,36 +1,35 @@
 package com.stevedevblog.app.domain;
 
-import org.springframework.data.annotation.Id;
-
-import java.util.Date;
 import java.util.Objects;
 
-public class PersistedBlogPost {
+public class ExistingBlogPostResponse {
 
-    @Id
     private final String id;
-
     private final String title;
     private final String description;
     private final String headerImageUrl;
-    private final String postContent;
-    private final Date publishDate;
+    private String postContent;
+    private final String prettyDate;
     private final PostCategory category;
 
-    public PersistedBlogPost(String id,
-                             String title,
-                             String description,
-                             String headerImageUrl,
-                             String postContent,
-                             Date publishDate,
-                             PostCategory category) {
+    public ExistingBlogPostResponse(String id,
+                                    String title,
+                                    String description,
+                                    String headerImageUrl,
+                                    String postContent,
+                                    String prettyDate,
+                                    PostCategory category) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.headerImageUrl = headerImageUrl;
         this.postContent = postContent;
-        this.publishDate = publishDate;
+        this.prettyDate = prettyDate;
         this.category = category;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -49,23 +48,19 @@ public class PersistedBlogPost {
         return postContent;
     }
 
+    public String getPrettyDate() {
+        return prettyDate;
+    }
+
     public PostCategory getCategory() {
         return category;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public Date getPublishDate() {
-        return publishDate;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof PersistedBlogPost)) return false;
-        PersistedBlogPost that = (PersistedBlogPost) o;
+        if (!(o instanceof ExistingBlogPostResponse)) return false;
+        ExistingBlogPostResponse that = (ExistingBlogPostResponse) o;
         return id.equals(that.id);
     }
 
