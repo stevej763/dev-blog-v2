@@ -5,8 +5,12 @@
     width: 65%;
 }
 
+.post-header-container {
+    padding: 20px;
+}
+
 .header-image-container {
-    margin-top: 20px;
+    margin-top: 5px;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -19,14 +23,14 @@
 .post-title {
     font-size: 35px;
     font-weight: 900;
-    margin: 40px auto;
-    margin-bottom: 5px;
+    margin: 5px 0;
     width: 100%
 }
 
 .post-description {
     margin-top: 0px;
     color: rgba(117, 117, 117, 1);
+    font-size: 1.5rem;
 }
 
 .post-ruler {
@@ -37,8 +41,6 @@
 }
 
 .markdown-content {
-
-
 }
 
 .markdown-content p {
@@ -111,4 +113,33 @@
     padding: 0;
     background-color: transparent;
     color: #666;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+}
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+    .post-container {
+         width:100%;
+     }
+
+    .markdown-content {
+        padding: 10px;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (max-width: 992px) {
+
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (max-width: 1200px) {
+
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (max-width: 1400px) {
+
 }
