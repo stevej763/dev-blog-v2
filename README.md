@@ -38,9 +38,9 @@ docker run --name steve-dev-blog -d -p 8080:8080 blog-site-test-v1:latest
 ```
 mvn clean package
 ```
-- Build Docker image for amd64 and arm64 (Mac 1 chip and Linux) then push to Docker hub repo (should update repo name)
+- Build Docker image for amd64 (By default my mac will build for arm M1 EC2 is amd64) then push to my Docker deployment repo
 ```
-docker buildx build --platform linux/amd64 --push -t steve763/test-repo .
+docker buildx build --platform linux/amd64 --push -t steve763/deployment .
 ```
 
 
@@ -55,7 +55,7 @@ docker pull steve763/test-repo
 - Start image up in a container
 ```
 docker run -p8080:8080 steve763/test-repo:latest
-docker run -p8080:80 -d --name steve-dev-blog steve763/test-repo:latest
+docker run -p8080:8080 -d --name steve-dev-blog steve763/test-repo:latest
 ```
 
 - Stop without removing
