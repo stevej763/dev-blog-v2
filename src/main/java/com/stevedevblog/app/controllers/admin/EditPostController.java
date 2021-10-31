@@ -1,6 +1,7 @@
 package com.stevedevblog.app.controllers.admin;
 
 import com.stevedevblog.app.domain.EditPostResponse;
+import com.stevedevblog.app.domain.ExistingBlogPostResponse;
 import com.stevedevblog.app.domain.PersistedBlogPost;
 import com.stevedevblog.app.service.BlogPostService;
 import org.springframework.stereotype.Controller;
@@ -25,20 +26,19 @@ public class EditPostController {
 
     @GetMapping("{id}")
     public String getEditPostPage(@PathVariable String id, Model model) {
-        Optional<PersistedBlogPost> persistedPost = blogPostService.getPostById(id);
-        if (persistedPost.isPresent()) {
-            PersistedBlogPost post = persistedPost.get();
+        ExistingBlogPostResponse post = blogPostService.getPostById(id);
+        if (post != null) {
             model.addAttribute("pageTitle", "Edit Post");
             model.addAttribute("postId", post.getId());
             model.addAttribute("postTitle", post.getTitle());
             model.addAttribute("postDescription", post.getDescription());
             model.addAttribute("postHeaderImage", post.getHeaderImageUrl());
             model.addAttribute("postContent", post.getPostContent());
-            model.addAttribute("publishDate", post.getPublishDate());
+            model.addAttribute("publishDate", post.getPrettyDate());
             model.addAttribute("postCategory", post.getCategory());
             return "admin/edit-post";
         } else {
-            return "redirect:/";
+            return "redirect:/error";
         }
 
     }

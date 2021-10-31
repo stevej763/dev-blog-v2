@@ -1,5 +1,6 @@
 package com.stevedevblog.app.controllers;
 
+import com.stevedevblog.app.domain.ExistingBlogPostResponse;
 import com.stevedevblog.app.domain.PersistedBlogPost;
 import com.stevedevblog.app.service.BlogPostService;
 import com.stevedevblog.app.service.MarkdownRenderer;
@@ -26,11 +27,11 @@ public class ReadPostController {
 
     @GetMapping("{id}")
     public String getReadPostPage(@PathVariable String id, Model model) {
-        Optional<PersistedBlogPost> post = blogPostService.getPostById(id);
-        return post.map(persistedBlogPost -> returnPage(id, model, persistedBlogPost)).orElse("redirect:/");
+        ExistingBlogPostResponse post = blogPostService.getPostById(id);
+        return returnPage(model, post);
     }
 
-    private String returnPage(String id, Model model, PersistedBlogPost post) {
+    private String returnPage(Model model, ExistingBlogPostResponse post) {
         String content = post.getPostContent();
         String markdown = markdownRenderer.markdownToHTML(content);
         model.addAttribute("pageTitle", post.getTitle());
