@@ -5,26 +5,32 @@
         <div class="homepage-welcome">
             <h1 class="welcome-title">Welcome</h1>
             <p>
-                Welcome to my website. This is some template text until I sort out the actual content for the welcome message.
+                Welcome to SteveDevBlog.com! My name is Steve and I am a Software Engineer. Here I write about personal projects I am working on and tutorials to help people like me.
+                Right now this website is my main project, take a look at some of my Build Log posts to follow along.
             </p>
         </div>
+        <hr class="post-ruler">
         <div>
-            <h2>Latest Posts</h2>
+            <h2 class="homepage-subheading">Latest Posts</h2>
             <div class="post-list">
                 {{#latestPosts}}
-                    <div class="post-card">
-                        <img class="post-image" src={{headerImageUrl}}>
-                        <div class="card-text-content">
-                            <h2>{{title}}</h2>
-                            <p>{{description}}</p>
-                            <p>category: {{category.value}}</p>
-                            <p>published: {{publishDate}}</p>
-                        </div>
-                        <a class="read-more-button" href="/blog-post/{{id}}">Read more -></a>
-                    </div>
+                        <a class="post-card post-link" href="/blog-post/{{id}}">
+                            <div class="main-card-container">
+                                <img class="post-image" src={{headerImageUrl}}>
+                                <div class="card-text-content">
+                                    <h2 class="listed-post-title">{{title}}</h2>
+                                    <p>{{description}}</p>
+                                </div>
+                            </div>
+                            <div class="card-info-content">
+                                <p>{{publishDate}}</p>
+                                <p>Category: {{category.value}}</p>
+                            </div>
+                        </a>
                 {{/latestPosts}}
             </div>
-            <h2>Featured Posts</h2>
+            <hr class="post-ruler">
+            <h2 class="homepage-subheading">Featured Posts</h2>
             <div class="post-list">
                 {{#featuredPosts}}
                     <div class="post-card">
