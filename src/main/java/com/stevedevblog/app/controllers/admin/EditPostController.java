@@ -26,23 +26,15 @@ public class EditPostController {
     public String getEditPostPage(@PathVariable String id, Model model) {
         ExistingBlogPostResponse post = blogPostService.getPostById(id);
         if (post != null) {
-            model.addAttribute("pageTitle", "Edit Post");
-            model.addAttribute("postId", post.getId());
-            model.addAttribute("postTitle", post.getTitle());
-            model.addAttribute("postDescription", post.getDescription());
-            model.addAttribute("postHeaderImage", post.getHeaderImageUrl());
-            model.addAttribute("postContent", post.getPostContent());
-            model.addAttribute("publishDate", post.getPrettyDate());
-            model.addAttribute("postCategory", post.getCategory());
+            addPageAttributes(model, post);
             return "admin/edit-post";
         } else {
             return "redirect:/error";
         }
-
     }
 
     @PostMapping
-    public String postEditBlogPostForm(EditPostRequest editPostRequest) {
+    public String postEditBlogPostRequest(EditPostRequest editPostRequest) {
         PersistedBlogPost result = blogPostService.updatePost(editPostRequest);
         if (result == null) {
             System.out.println("TODO handle this better.");
@@ -51,4 +43,14 @@ public class EditPostController {
         return "redirect:/";
     }
 
+    private void addPageAttributes(Model model, ExistingBlogPostResponse post) {
+        model.addAttribute("pageTitle", "Edit Post");
+        model.addAttribute("postId", post.getId());
+        model.addAttribute("postTitle", post.getTitle());
+        model.addAttribute("postDescription", post.getDescription());
+        model.addAttribute("postHeaderImage", post.getHeaderImageUrl());
+        model.addAttribute("postContent", post.getPostContent());
+        model.addAttribute("publishDate", post.getPrettyDate());
+        model.addAttribute("postCategory", post.getCategory());
+    }
 }
