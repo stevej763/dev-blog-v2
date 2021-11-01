@@ -2,7 +2,8 @@ package com.stevedevblog.app.security;
 
 import java.util.Set;
 
-import static com.stevedevblog.app.security.UserPermission.*;
+import static com.stevedevblog.app.security.UserPermission.POST_READ;
+import static com.stevedevblog.app.security.UserPermission.POST_WRITE;
 
 public enum UserRole {
     ADMIN(Set.of(POST_READ, POST_WRITE));

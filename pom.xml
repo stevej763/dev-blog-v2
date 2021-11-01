@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.stevedevblog</groupId>
-	<artifactId>mvp</artifactId>
+	<artifactId>app</artifactId>
 	<version>0.0.2</version>
 	<name>devblogv2</name>
 	<description>The second version of my dev blog site</description>

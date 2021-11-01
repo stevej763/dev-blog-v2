@@ -1,6 +1,6 @@
 package com.stevedevblog.app.domain;
 
-public class NewPostResponse {
+public class NewPostRequest {
 
     private final String title;
     private final String description;
@@ -8,11 +8,11 @@ public class NewPostResponse {
     private final String postContent;
     private final PostCategory category;
 
-    public NewPostResponse(String title,
-                           String description,
-                           String headerImageUrl,
-                           String postContent,
-                           PostCategory category) {
+    public NewPostRequest(String title,
+                          String description,
+                          String headerImageUrl,
+                          String postContent,
+                          PostCategory category) {
         this.title = title;
         this.description = description;
         this.headerImageUrl = headerImageUrl;

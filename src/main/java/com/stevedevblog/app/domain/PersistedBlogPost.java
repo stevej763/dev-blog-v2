@@ -2,6 +2,7 @@ package com.stevedevblog.app.domain;
 
 import org.springframework.data.annotation.Id;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -14,7 +15,7 @@ public class PersistedBlogPost {
     private final String description;
     private final String headerImageUrl;
     private final String postContent;
-    private final Date publishDate;
+    private final LocalDateTime publishDate;
     private final PostCategory category;
 
     public PersistedBlogPost(String id,
@@ -22,7 +23,7 @@ public class PersistedBlogPost {
                              String description,
                              String headerImageUrl,
                              String postContent,
-                             Date publishDate,
+                             LocalDateTime publishDate,
                              PostCategory category) {
         this.id = id;
         this.title = title;
@@ -57,7 +58,7 @@ public class PersistedBlogPost {
         return id;
     }
 
-    public Date getPublishDate() {
+    public LocalDateTime getPublishDate() {
         return publishDate;
     }
 

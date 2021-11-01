@@ -8,7 +8,7 @@ public class ExistingBlogPostResponse {
     private final String title;
     private final String description;
     private final String headerImageUrl;
-    private String postContent;
+    private final String postContent;
     private final String prettyDate;
     private final PostCategory category;
 

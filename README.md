@@ -38,7 +38,7 @@ docker run --name steve-dev-blog -d -p 8080:8080 blog-site-test-v1:latest
 ```
 mvn clean package
 ```
-- Build Docker image for amd64 (By default my mac will build for arm M1 EC2 is amd64) then push to my Docker deployment repo
+- Build Docker image for amd64 (By default my Mac will build for arm M1 EC2 is amd64) then push to my Docker deployment repo
 ```
 docker buildx build --platform linux/amd64 --push -t steve763/deployment .
 ```

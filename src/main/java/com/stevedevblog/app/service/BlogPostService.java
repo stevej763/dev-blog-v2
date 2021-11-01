@@ -1,6 +1,9 @@
 package com.stevedevblog.app.service;
 
-import com.stevedevblog.app.domain.*;
+import com.stevedevblog.app.domain.EditPostRequest;
+import com.stevedevblog.app.domain.ExistingBlogPostResponse;
+import com.stevedevblog.app.domain.NewPostRequest;
+import com.stevedevblog.app.domain.PersistedBlogPost;
 import com.stevedevblog.app.domain.builders.ExistingBlogPostResponseBuilder;
 import com.stevedevblog.app.domain.builders.PersistedBlogPostBuilder;
 import com.stevedevblog.app.repository.BlogPostRepository;
@@ -15,9 +18,9 @@ import java.util.stream.Collectors;
 @Component
 public class BlogPostService {
 
-    Logger LOGGER = LoggerFactory.getLogger(BlogPostService.class);
+    final Logger LOGGER = LoggerFactory.getLogger(BlogPostService.class);
 
-    private static final int MAX_NUMBER_OF_LATEST_POSTS = 3;
+    private static final int NUMBER_OF_LATEST_POSTS_TO_SHOW = 3;
 
     private final BlogPostRepository blogPostRepository;
 
@@ -25,8 +28,8 @@ public class BlogPostService {
         this.blogPostRepository = blogPostRepository;
     }
 
-    public PersistedBlogPost addPost(NewPostResponse newPostResponse) {
-        PersistedBlogPost persistedBlogPost = convertToPersistedObject(newPostResponse);
+    public PersistedBlogPost addPost(NewPostRequest newPostRequest) {
+        PersistedBlogPost persistedBlogPost = convertToPersistedObject(newPostRequest);
         try {
             LOGGER.info("adding post with id: {}", persistedBlogPost.getId());
             return blogPostRepository.insert(persistedBlogPost);
@@ -37,28 +40,32 @@ public class BlogPostService {
 
     public List<ExistingBlogPostResponse> getPosts() {
         List<PersistedBlogPost> persistedBlogPosts = blogPostRepository.findAll();
-        return persistedBlogPosts.stream().map(ExistingBlogPostResponseBuilder::build).collect(Collectors.toList());
+        return persistedBlogPosts.stream()
+                .sorted((o1, o2) -> (
+                        o2.getPublishDate().compareTo(o1.getPublishDate())))
+                .map(ExistingBlogPostResponseBuilder::build)
+                .collect(Collectors.toList());
     }
 
     public List<ExistingBlogPostResponse> getLatestPosts() {
         List<ExistingBlogPostResponse> posts = getPosts();
-        if(posts.size() < MAX_NUMBER_OF_LATEST_POSTS) {
+        if(posts.size() < NUMBER_OF_LATEST_POSTS_TO_SHOW) {
             return posts;
         }
-        return posts.subList(0, MAX_NUMBER_OF_LATEST_POSTS);
+        return posts.subList(0, NUMBER_OF_LATEST_POSTS_TO_SHOW);
 
     }
 
-    public PersistedBlogPost updatePost(EditPostResponse editPostResponse) {
-        Optional<PersistedBlogPost> optionalOriginalPost = blogPostRepository.findById(editPostResponse.getId());
+    public PersistedBlogPost updatePost(EditPostRequest editPostRequest) {
+        Optional<PersistedBlogPost> optionalOriginalPost = blogPostRepository.findById(editPostRequest.getId());
         if(optionalOriginalPost.isPresent()) {
             PersistedBlogPost originalPost = optionalOriginalPost.get();
             PersistedBlogPost postUpdate = new PersistedBlogPost(
-                    editPostResponse.getId(),
-                    editPostResponse.getTitle(),
-                    editPostResponse.getDescription(),
-                    editPostResponse.getHeaderImageUrl(),
-                    editPostResponse.getPostContent(),
+                    editPostRequest.getId(),
+                    editPostRequest.getTitle(),
+                    editPostRequest.getDescription(),
+                    editPostRequest.getHeaderImageUrl(),
+                    editPostRequest.getPostContent(),
                     originalPost.getPublishDate(),
                     originalPost.getCategory()
             );
@@ -66,7 +73,7 @@ public class BlogPostService {
             LOGGER.info("updating post id={} post={}", postUpdate.getId(), persistedBlogPost);
             return persistedBlogPost;
         }
-        LOGGER.error("Error when updating post with id: {}", editPostResponse.getId());
+        LOGGER.error("Error when updating post with id: {}", editPostRequest.getId());
         return null;
 
     }
@@ -84,13 +91,13 @@ public class BlogPostService {
         return null;
     }
 
-    private PersistedBlogPost convertToPersistedObject(NewPostResponse newPostResponse) {
+    private PersistedBlogPost convertToPersistedObject(NewPostRequest newPostRequest) {
         return new PersistedBlogPostBuilder().build(
-                newPostResponse.getTitle(),
-                newPostResponse.getDescription(),
-                newPostResponse.getHeaderImageUrl(),
-                newPostResponse.getPostContent(),
-                newPostResponse.getCategory());
+                newPostRequest.getTitle(),
+                newPostRequest.getDescription(),
+                newPostRequest.getHeaderImageUrl(),
+                newPostRequest.getPostContent(),
+                newPostRequest.getCategory());
     }
 
 }

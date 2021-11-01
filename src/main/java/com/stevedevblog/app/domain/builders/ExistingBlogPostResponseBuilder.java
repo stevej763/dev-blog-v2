@@ -3,8 +3,10 @@ package com.stevedevblog.app.domain.builders;
 import com.stevedevblog.app.domain.ExistingBlogPostResponse;
 import com.stevedevblog.app.domain.PersistedBlogPost;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.Optional;
 
 public class ExistingBlogPostResponseBuilder {
     public static ExistingBlogPostResponse build(PersistedBlogPost persistedBlogPost) {
@@ -18,8 +20,9 @@ public class ExistingBlogPostResponseBuilder {
                 persistedBlogPost.getCategory());
     }
 
-    private static String convertToPrettyDate(Date publishDate) {
-        return null;
+    private static String convertToPrettyDate(LocalDateTime publishDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("LLL dd yyyy");
+        return formatter.format(publishDate);
     }
 
 }

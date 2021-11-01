@@ -1,6 +1,6 @@
 package com.stevedevblog.app.controllers.admin;
 
-import com.stevedevblog.app.domain.EditPostResponse;
+import com.stevedevblog.app.domain.EditPostRequest;
 import com.stevedevblog.app.domain.ExistingBlogPostResponse;
 import com.stevedevblog.app.domain.PersistedBlogPost;
 import com.stevedevblog.app.service.BlogPostService;
@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Optional;
 
 @Controller
 @RequestMapping(EditPostController.PATH)
@@ -44,8 +42,8 @@ public class EditPostController {
     }
 
     @PostMapping
-    public String postEditBlogPostForm(EditPostResponse editPostResponse) {
-        PersistedBlogPost result = blogPostService.updatePost(editPostResponse);
+    public String postEditBlogPostForm(EditPostRequest editPostRequest) {
+        PersistedBlogPost result = blogPostService.updatePost(editPostRequest);
         if (result == null) {
             System.out.println("TODO handle this better.");
             System.out.println("There was an error updating the post.");
