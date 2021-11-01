@@ -1,13 +1,11 @@
 package com.stevedevblog.app.service;
 
 import com.stevedevblog.app.domain.*;
-import com.stevedevblog.app.domain.builders.PersistedBlogPostBuilder;
 import com.stevedevblog.app.repository.BlogPostRepository;
-import org.hamcrest.core.Is;
 import org.hamcrest.core.IsNull;
 import org.junit.jupiter.api.Test;
-import org.springframework.util.Assert;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -17,11 +15,31 @@ import static org.mockito.Mockito.*;
 public class BlogPostServiceTest {
 
     private final BlogPostRepository blogPostRepository = mock(BlogPostRepository.class);
-    private final BlogPostService underTest = new BlogPostService(blogPostRepository);
-    private final NewPostResponse newPostResponse = mock(NewPostResponse.class);
-    private final PersistedBlogPost persistedBlogPost = new PersistedBlogPost("1", "title1", "description", "", "", new Date(), PostCategory.BUILD_LOG);
+    private final NewPostRequest newPostRequest = mock(NewPostRequest.class);
+    private final LocalDateTime date2018 = LocalDateTime.of( 2018, 1, 1, 0, 0, 0 );
+    private final LocalDateTime date2019 = LocalDateTime.of( 2019, 1, 1, 0, 0, 0 );
+    private final LocalDateTime date2020 = LocalDateTime.of( 2020, 1, 1, 0, 0, 0 );
+    private final LocalDateTime date2021 = LocalDateTime.of( 2021, 1, 1, 0, 0, 0 );
     private final String id = "1";
-    private final EditPostResponse editedPost = new EditPostResponse(id, "title1", "description", "", "", new Date(), PostCategory.BUILD_LOG);
+
+    private final PersistedBlogPost persistedBlogPost = new PersistedBlogPost("1", "title1", "description", "", "", LocalDateTime.now(), PostCategory.BUILD_LOG);
+    private final EditPostRequest editedPost = new EditPostRequest(id, "title1", "description", "", "");
+
+    private final List<PersistedBlogPost> persistedBlogPosts = List.of(
+            new PersistedBlogPost("2", "title2", "description", "", "middle post", date2020, PostCategory.BUILD_LOG),
+            new PersistedBlogPost("1", "title1", "description", "", "older post", date2019, PostCategory.BUILD_LOG),
+            new PersistedBlogPost("3", "title3", "description", "", "newest post", date2021, PostCategory.BUILD_LOG),
+            new PersistedBlogPost("4", "title4", "description", "", "oldest post", date2018, PostCategory.BUILD_LOG)
+    );
+    private final List<ExistingBlogPostResponse> existingBlogPostResponses = List.of(
+            new ExistingBlogPostResponse("3", "post2021", "description", "", "", "2021", PostCategory.TESTING),
+            new ExistingBlogPostResponse("2", "post2020", "description", "", "", "2020", PostCategory.DESIGN_PATTERNS),
+            new ExistingBlogPostResponse("1", "post2019", "description", "", "", "2019", PostCategory.BUILD_LOG),
+            new ExistingBlogPostResponse("4", "post2018", "description", "", "", "2018", PostCategory.BUILD_LOG)
+    );
+
+    private final BlogPostService underTest = new BlogPostService(blogPostRepository);
+
 
     @Test
     public void shouldRequestRepositoryToAddNewPostToDatabase() {
@@ -29,20 +47,10 @@ public class BlogPostServiceTest {
 //  I have no way of knowing what the ID of the new object is going to be, so best I can do is verify an object gets passed
 //  onto the repo. There is probably a good way around this, but for now it isn't the main focus. If I had a factory or a builder
 //  mocked, I could stub an object as a response which I supposed is one way to do it.
+        when(blogPostRepository.insert(any(PersistedBlogPost.class))).thenReturn(persistedBlogPost);
 
-        String id = UUID.randomUUID().toString();
-        Date publishDate = new Date();
-        PersistedBlogPost realPost = new PersistedBlogPost(
-                id,
-                "title",
-                "description",
-                "headerImageUrl",
-                "postContent",
-                publishDate,
-                PostCategory.BUILD_LOG);
-        when(blogPostRepository.insert(any(PersistedBlogPost.class))).thenReturn(realPost);
+        underTest.addPost(newPostRequest);
 
-        underTest.addPost(newPostResponse);
         verify(blogPostRepository).insert(any(PersistedBlogPost.class));
     }
     
@@ -54,12 +62,27 @@ public class BlogPostServiceTest {
     }
 
     @Test
-    public void getPostsShouldReturnAnListOfExistingBlogPostResponsesFromDbWhenThereArePosts() {
-        List<PersistedBlogPost> persistedPosts = getPersistedPosts();
-        List<ExistingBlogPostResponse> response = getExistingBlogPostResponses();
-        when(blogPostRepository.findAll()).thenReturn(persistedPosts);
+    public void getPostsShouldReturnAnListOfExistingBlogPostResponsesFromDbSortedByDateDescending() {
+        when(blogPostRepository.findAll()).thenReturn(persistedBlogPosts);
         List<ExistingBlogPostResponse> result = underTest.getPosts();
-        assertThat(result, is(response));
+        assertThat(result, is(existingBlogPostResponses));
+    }
+
+    @Test
+    public void twoPostsFromTheSameDayShouldBeOrderedCorrectly() {
+        List<PersistedBlogPost> twoPostsFromSameDay = List.of(
+                new PersistedBlogPost("2", "title2", "description", "", "middle post", LocalDateTime.now(), PostCategory.BUILD_LOG),
+                new PersistedBlogPost("1", "title1", "description", "", "older post", LocalDateTime.now().minusHours(1), PostCategory.BUILD_LOG)
+        );
+        when(blogPostRepository.findAll()).thenReturn(twoPostsFromSameDay);
+
+        List<ExistingBlogPostResponse> expectedResponse = List.of(
+                new ExistingBlogPostResponse("2", "now", "description", "", "first post", "2021", PostCategory.BUILD_LOG),
+                new ExistingBlogPostResponse("1", "an hour ago", "description", "", "last post", "2021", PostCategory.BUILD_LOG)
+        );
+
+        List<ExistingBlogPostResponse> result = underTest.getPosts();
+        assertThat(result, is(expectedResponse));
     }
 
     @Test
@@ -72,7 +95,7 @@ public class BlogPostServiceTest {
     @Test
     public void  getLatestPostsShouldReturnAllExistingBlogPostResponsesFromDbWhenThereAreLessThanThreePosts() {
         List<PersistedBlogPost> persistedPosts = List.of(
-                new PersistedBlogPost("1", "title1", "description", "", "", new Date(), PostCategory.BUILD_LOG)
+                new PersistedBlogPost("1", "title1", "description", "", "", date2021, PostCategory.BUILD_LOG)
         );
         when(blogPostRepository.findAll()).thenReturn(persistedPosts);
         List<ExistingBlogPostResponse> result = underTest.getLatestPosts();
@@ -80,11 +103,23 @@ public class BlogPostServiceTest {
     }
 
     @Test
+    public void  getLatestPostsShouldReturnAListOfExistingPostsSortedByDateDescending() {
+        List<ExistingBlogPostResponse> expectedResponse = List.of(
+                new ExistingBlogPostResponse("3", "title1", "description", "", "first post", "2021", PostCategory.BUILD_LOG),
+                new ExistingBlogPostResponse("2", "title1", "description", "", "middle post", "2020", PostCategory.BUILD_LOG),
+                new ExistingBlogPostResponse("1", "title1", "description", "", "last post", "2019", PostCategory.BUILD_LOG)
+        );
+        when(blogPostRepository.findAll()).thenReturn(persistedBlogPosts);
+        List<ExistingBlogPostResponse> result = underTest.getLatestPosts();
+        assertThat(result, is(expectedResponse));
+    }
+
+    @Test
     public void  getLatestPostsShouldReturnAnListOfThreeExistingBlogPostResponsesFromDbWhenThereExactlyThreePosts() {
         List<PersistedBlogPost> persistedPosts = List.of(
-                new PersistedBlogPost("1", "title1", "description", "", "", new Date(), PostCategory.BUILD_LOG),
-                new PersistedBlogPost("2", "title2", "description", "", "", new Date(), PostCategory.DESIGN_PATTERNS),
-                new PersistedBlogPost("3", "title3", "description", "", "", new Date(), PostCategory.TESTING)
+                new PersistedBlogPost("1", "title1", "description", "", "", date2019, PostCategory.BUILD_LOG),
+                new PersistedBlogPost("2", "title2", "description", "", "", date2020, PostCategory.DESIGN_PATTERNS),
+                new PersistedBlogPost("3", "title3", "description", "", "", date2021, PostCategory.TESTING)
         );
         when(blogPostRepository.findAll()).thenReturn(persistedPosts);
         List<ExistingBlogPostResponse> result = underTest.getLatestPosts();
@@ -93,8 +128,7 @@ public class BlogPostServiceTest {
 
     @Test
     public void  getLatestPostsShouldReturnAnListOfThreeExistingBlogPostResponsesFromDbWhenThereAreMoreThanThreePosts() {
-        List<PersistedBlogPost> persistedPosts = getPersistedPosts();
-        when(blogPostRepository.findAll()).thenReturn(persistedPosts);
+        when(blogPostRepository.findAll()).thenReturn(persistedBlogPosts);
         List<ExistingBlogPostResponse> result = underTest.getLatestPosts();
         assertThat(result.size(), is(3));
     }
@@ -127,24 +161,4 @@ public class BlogPostServiceTest {
         PersistedBlogPost result = underTest.updatePost(editedPost);
         assertThat(result, IsNull.nullValue());
     }
-
-
-    private List<PersistedBlogPost> getPersistedPosts() {
-        return List.of(
-                new PersistedBlogPost("1", "title1", "description", "", "", new Date(), PostCategory.BUILD_LOG),
-                new PersistedBlogPost("2", "title2", "description", "", "", new Date(), PostCategory.DESIGN_PATTERNS),
-                new PersistedBlogPost("3", "title3", "description", "", "", new Date(), PostCategory.TESTING),
-                new PersistedBlogPost("4", "title4", "description", "", "", new Date(), PostCategory.BUILD_LOG)
-        );
-    }
-
-    private List<ExistingBlogPostResponse> getExistingBlogPostResponses() {
-        return List.of(
-                new ExistingBlogPostResponse("1", "title1", "description", "", "", "Oct 28th 2021", PostCategory.BUILD_LOG),
-                new ExistingBlogPostResponse("2", "title2", "description", "", "", "Oct 29th 2021", PostCategory.DESIGN_PATTERNS),
-                new ExistingBlogPostResponse("3", "title3", "description", "", "", "Oct 30th 2021", PostCategory.TESTING),
-                new ExistingBlogPostResponse("4", "title4", "description", "", "", "Oct 31st 2021", PostCategory.BUILD_LOG)
-        );
-    }
-
 }

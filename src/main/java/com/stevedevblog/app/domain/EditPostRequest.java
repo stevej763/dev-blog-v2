@@ -2,7 +2,7 @@ package com.stevedevblog.app.domain;
 
 import java.util.Date;
 
-public class EditPostResponse {
+public class EditPostRequest {
 
 
     private final String id;
@@ -10,27 +10,17 @@ public class EditPostResponse {
     private final String description;
     private final String headerImageUrl;
     private final String postContent;
-    private final Date publishDate;
-    private final PostCategory category;
 
-    public EditPostResponse(String id,
-                            String title,
-                            String description,
-                            String headerImageUrl,
-                            String postContent,
-                            Date publishDate,
-                            PostCategory category) {
+    public EditPostRequest(String id,
+                           String title,
+                           String description,
+                           String headerImageUrl,
+                           String postContent) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.headerImageUrl = headerImageUrl;
         this.postContent = postContent;
-        this.publishDate = publishDate;
-        this.category = category;
-    }
-
-    public PostCategory getCategory() {
-        return category;
     }
 
     public String getId() {
@@ -53,7 +43,4 @@ public class EditPostResponse {
         return postContent;
     }
 
-    public Date getPublishDate() {
-        return publishDate;
-    }
 }

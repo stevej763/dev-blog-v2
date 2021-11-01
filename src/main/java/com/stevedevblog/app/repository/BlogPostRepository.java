@@ -8,7 +8,4 @@ import java.util.List;
 
 @Component
 public interface BlogPostRepository extends MongoRepository<PersistedBlogPost, String> {
-
-    public List<PersistedBlogPost> findFirst3ById();
-    
 }

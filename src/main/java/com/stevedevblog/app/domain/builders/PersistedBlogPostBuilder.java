@@ -3,6 +3,7 @@ package com.stevedevblog.app.domain.builders;
 import com.stevedevblog.app.domain.PersistedBlogPost;
 import com.stevedevblog.app.domain.PostCategory;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -15,7 +16,7 @@ public class PersistedBlogPostBuilder {
             String postContent,
             PostCategory category) {
         String id = UUID.randomUUID().toString();
-        Date publishDate = new Date();
+        LocalDateTime publishDate = LocalDateTime.now();
         return new PersistedBlogPost(id, title, description, headerImageUrl, postContent, publishDate, category);
     }
 
