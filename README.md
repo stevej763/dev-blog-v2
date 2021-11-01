@@ -1,18 +1,12 @@
 # Dev Blog v2
 
-## Access the live site at this address:
-[stevedevblog](https://stevedevblog.com)
-
-## First draft of the Homepage
-![new-post-page](docs/homepage-basic-layout.png)
-
-## First draft of the New Post Page
-![new-post-page](docs/new-post-page-basic-layout.png)
+## Access the live site at this address: [stevedevblog](https://stevedevblog.com)
 
 
 ## ToDo list:
 - ~~Document how I set up Docker, EC2, Nginx, Domain and LetsEncrypt~~
 - Add testing to everything - working on this
+- Move user auth to the database instead of hardcoding values
 - Implement set up and clear down db for tests
 - Iterate on process for deploying updates to Prod
   - Set up CI/CD pipeline to automate builds
