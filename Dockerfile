@@ -1,4 +1,5 @@
+# syntax=docker/dockerfile:1
 FROM openjdk:11-jre-slim
 MAINTAINER stevedevblog.com
-COPY target/mvp-0.0.2.jar mvp-0.0.2.jar
-ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar","/mvp-0.0.2.jar"]
+COPY target/app-0.1.0.jar app-0.1.0.jar
+ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar","/app-0.1.0.jar"]

@@ -28,15 +28,15 @@ public class SecurityConfigurationService extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/", "/error", "/css/*", "/js/*", "/icons/*", "/blog-post/*").permitAll()
-                .antMatchers("/edit-post/*", "/new-post").hasRole(ADMIN.name())
-                .anyRequest()
-                .authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login").permitAll();
+            .csrf().disable()
+            .authorizeRequests()
+            .antMatchers("/", "/about", "/error", "/css/*", "/js/*", "/icons/*", "/blog-post/*").permitAll()
+            .antMatchers("/edit-post/*", "/new-post").hasRole(ADMIN.name())
+            .anyRequest()
+            .authenticated()
+            .and()
+            .formLogin()
+            .loginPage("/login").permitAll();
     }
 
     @Override
@@ -44,7 +44,7 @@ public class SecurityConfigurationService extends WebSecurityConfigurerAdapter {
     protected UserDetailsService userDetailsService() {
         UserDetails adminUser = User.builder()
                 .username("steve")
-                .password(passwordEncoder.encode("password"))
+                .password(passwordEncoder.encode("springboot"))
                 .roles(ADMIN.name())
                 .build();
 
