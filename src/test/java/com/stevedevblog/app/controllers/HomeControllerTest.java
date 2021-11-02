@@ -27,7 +27,6 @@ public class HomeControllerTest {
         this.mockMvc.perform(get(HomeController.PATH))
                 .andExpect(status().isOk())
                 .andExpect(content().string(hasTitle()))
-                .andExpect(content().string(hasIntroText()))
                 .andExpect(content().string(hasNavbar()))
                 .andExpect(content().string(hasPageContentDiv()))
                 .andExpect(content().string(hasFooter()));

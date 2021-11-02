@@ -78,9 +78,8 @@ h1, h2, h3 {
     padding: 20px 0;
     justify-content: center;
     align-content:center;
-    background-color: antiquewhite;
-    border-top: 5px #787878 solid;
-    border-bottom: 5px #787878 solid;
+    background-color: #dcdecd;
+    border: 2px #787878 solid;
 }
 
 .login-input-field {
@@ -95,6 +94,12 @@ h1, h2, h3 {
     justify-content: center;
 }
 
+.login-error {
+    text-align: center;
+    color: red;
+    margin: 0;
+}
+
 /* homepage */
 
 .homepage-container {
@@ -102,17 +107,9 @@ h1, h2, h3 {
     margin: 0px auto;
 }
 
-.homepage-welcome {
-    margin-bottom: 20px;
-}
-
 .homepage-subheading {
     margin-top: 20px;
     margin-bottom:20px;
-}
-
-.welcome-title {
-
 }
 
 .post-list {
@@ -169,11 +166,26 @@ h1, h2, h3 {
 }
 
 /* about */
+
+.about-title {
+
+}
+
+.about-welcome {
+    margin: auto;
+    width: 90%;
+    margin-bottom: 20px;
+}
+
+.about-text {
+    font-size: 1.2rem;
+}
+
 .about-me-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    padding-top: 40px;
+    padding-top: 20px;
 }
 
 .about-list {
