@@ -78,7 +78,7 @@ h1, h2, h3 {
     padding: 20px 0;
     justify-content: center;
     align-content:center;
-    background-color: #dcdecd;
+    background-color: #e4e4e494;
     border: 2px #787878 solid;
 }
 
@@ -219,6 +219,11 @@ h1, h2, h3 {
     text-decoration: none;
 }
 
+/* admin */
+
+.admin-new-post-link {
+}
+
 /* new post */
 
 .hidden-label {
@@ -323,11 +328,6 @@ h1, h2, h3 {
     background-color: #FFFFFF;
     border: 2px solid black;
     border-radius: 5px;
-    transition: 2s;
-}
-
-.login-button:hover {
-    border: 2px solid #ed143d;
 }
 
 /* Small devices (landscape phones, 576px and up) */

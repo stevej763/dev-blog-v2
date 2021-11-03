@@ -9,6 +9,7 @@ import com.stevedevblog.app.domain.builders.PersistedBlogPostBuilder;
 import com.stevedevblog.app.repository.BlogPostRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -78,6 +79,7 @@ public class BlogPostService {
 
     }
 
+    @Nullable
     public ExistingBlogPostResponse getPostById(String id) {
         LOGGER.info("finding post with id: {}", id);
         Optional<PersistedBlogPost> result = blogPostRepository.findById(id);

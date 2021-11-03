@@ -21,14 +21,13 @@ import static com.stevedevblog.app.security.UserRole.ADMIN;
 @EnableWebSecurity
 public class SecurityConfigurationService extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private Environment env;
-
     private final PasswordEncoder passwordEncoder;
+    private final Environment env;
 
     @Autowired
-    public SecurityConfigurationService(PasswordEncoder passwordEncoder) {
+    public SecurityConfigurationService(PasswordEncoder passwordEncoder, Environment env) {
         this.passwordEncoder = passwordEncoder;
+        this.env = env;
     }
 
     @Override
