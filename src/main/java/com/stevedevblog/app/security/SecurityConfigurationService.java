@@ -3,6 +3,7 @@ package com.stevedevblog.app.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -12,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import java.util.Objects;
+
 import static com.stevedevblog.app.security.UserRole.ADMIN;
 
 @Configuration
@@ -19,10 +22,12 @@ import static com.stevedevblog.app.security.UserRole.ADMIN;
 public class SecurityConfigurationService extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
+    private final Environment env;
 
     @Autowired
-    public SecurityConfigurationService(PasswordEncoder passwordEncoder) {
+    public SecurityConfigurationService(PasswordEncoder passwordEncoder, Environment env) {
         this.passwordEncoder = passwordEncoder;
+        this.env = env;
     }
 
     @Override
@@ -36,15 +41,16 @@ public class SecurityConfigurationService extends WebSecurityConfigurerAdapter {
             .authenticated()
             .and()
             .formLogin()
-            .loginPage("/login").permitAll();
+            .loginPage("/login").permitAll()
+            .failureUrl("/login?authError=failure");
     }
 
     @Override
     @Bean
     protected UserDetailsService userDetailsService() {
         UserDetails adminUser = User.builder()
-                .username("steve")
-                .password(passwordEncoder.encode("springboot"))
+                .username(env.getProperty("adminUser"))
+                .password(passwordEncoder.encode(env.getProperty("adminPassword")))
                 .roles(ADMIN.name())
                 .build();
 
