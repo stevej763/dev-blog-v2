@@ -227,43 +227,76 @@ h1, h2, h3 {
 }
 
 /* admin */
+ .admin-options-container {
+    padding: 0 5px;
+    margin: 10px auto;
+    display:flex;
+    flex-direction: column;
+ }
 
-.admin-options-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width:80%;
-    padding: 50px auto;
-    margin: 40px 20px;
-
+.admin-subheading {
+    margin: 5px;
 }
 
-.admin-option {
-    background-color: #a8a8a894;
-    width: 40%;
-    height: 100%;
-    padding: 50px 20px;
-    border-radius:4px;
-    }
+ .admin-add-post-container {
+    width: 80%;
+    margin: auto;
+ }
 
-.new-post-link {
-    text-decoration: none;
+ .admin-add-post {
+    color: black;
+    font-size: 2rem;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    border: 2px solid black;
+    padding: 20px 0;
     width:100%;
-    height:100%
-}
+ }
 
-.post-to-edit-button {
-    margin: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    text-decoration: none;
-    background-color: white;
-}
+  .admin-add-post:hover {
+    color: #ccc;
+    box-shadow: 0 0 30px #ccc;
+    border: 2px solid #000000;
+  }
 
-.edit-post-form {
-    text-align: center;
-    margin:auto
-}
+  .admin-edit-table table {
+      border-collapse: collapse;
+      border-collapse: collapse;
+      margin: 5px auto;
+      font-size: 0.9em;
+      font-family: sans-serif;
+      width: 100%;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+   }
+
+  .admin-edit-table thead tr {
+     background-color: #4b4f4f;
+     color: #ffffff;
+     text-align: left;
+  }
+
+  .admin-edit-table thead tr th {
+      padding: 12px 15px;
+  }
+
+  .admin-edit-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+   }
+
+   .admin-edit-button {
+        width: 100%;
+        border: none;
+        background-color: green;
+        height: 3rem;
+   }
+
+   .admin-edit-button:hover {
+        background-color: greenyellow;
+   }
+
+   .admin-edit-td {
+    padding: 0;
+   }
 
 /* new post */
 
