@@ -1,5 +1,20 @@
 {{>partials/header}}
 {{>partials/navbar}}
 <h1>{{pageTitle}}</h1>
-    <a class="admin-new-post-link" href="/new-post">Add a new post</a>
+<div class="admin-options-container">
+    <div id="new-post" class="admin-option flex-center">
+        <a class="new-post-link" href="/new-post">Add a new post</a>
+    </div>
+
+    <div id="edit-post" class="admin-option flex-center">
+        <form class="edit-post-form" action="/admin/edit-post">
+            <select name="postToEdit">
+                {{#posts}}
+                    <option value="{{id}}">{{title}}</option>
+                {{/posts}}
+            </select>
+            <input class="post-to-edit-button" type="submit" value="Edit Post">
+        </form>
+    </div>
+</div>
 {{>partials/footer}}
