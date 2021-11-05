@@ -13,8 +13,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
-import java.util.Objects;
-
 import static com.stevedevblog.app.security.UserRole.ADMIN;
 
 @Configuration
@@ -53,7 +51,6 @@ public class SecurityConfigurationService extends WebSecurityConfigurerAdapter {
                 .password(passwordEncoder.encode(env.getProperty("adminPassword")))
                 .roles(ADMIN.name())
                 .build();
-
         return new InMemoryUserDetailsManager(adminUser);
     }
 }

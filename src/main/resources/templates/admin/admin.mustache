@@ -1,5 +1,35 @@
 {{>partials/header}}
 {{>partials/navbar}}
 <h1>{{pageTitle}}</h1>
-    <a class="admin-new-post-link" href="/new-post">Add a new post</a>
+<div class="admin-options-container">
+    <h2>Add Post</h2>
+    <div class="admin-add-post-container">
+        <a href="/new-post"><button class="admin-add-post">Add new post</button></a>
+    </div>
+    <h2 class="admin-subheading">Edit Post</h2>
+    <div class="admin-edit-table">
+        <table>
+            <thead>
+            <tr>
+                <th>Post Title</th>
+                <th>Category</th>
+                <th>Edit</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#posts}}
+                <tr>
+                    <td>{{title}}</td>
+                    <td>{{category}}</td>
+                    <td class="admin-edit-td">
+                        <a href="/edit-post/{{id}}">
+                            <button class="admin-edit-button">Edit</button>
+                        </a>
+                    </td>
+                </tr>
+            {{/posts}}
+            </tbody>
+        </table>
+    </div>
+</div>
 {{>partials/footer}}
