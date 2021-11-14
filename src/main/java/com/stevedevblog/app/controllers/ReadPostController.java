@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(ReadPostController.PATH)
 public class ReadPostController {
 
-    public static final String PATH = "/blog-post";
+    public static final String PATH = "/blog.mustache-post";
     private final BlogPostService blogPostService;
     private final MarkdownRenderer markdownRenderer;
 

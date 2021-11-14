@@ -18,6 +18,7 @@ import static com.stevedevblog.app.controllers.HomeController.PATH;
 public class HomeController {
 
     public static final String PATH = "/";
+    public static final String PAGE_TITLE = "Home";
     private final BlogPostService blogPostService;
 
     public HomeController(BlogPostService blogPostService) {
@@ -28,7 +29,7 @@ public class HomeController {
     public String getHomepage(Model model) {
         List<ExistingBlogPostResponse> latestPosts = blogPostService.getLatestPosts();
         List<PersistedBlogPost> featuredPosts = getFeaturedPosts();
-        model.addAttribute("pageTitle", "Home");
+        model.addAttribute("pageTitle", PAGE_TITLE);
         model.addAttribute("latestPosts", latestPosts);
         model.addAttribute("featuredPosts", featuredPosts);
         return "index";

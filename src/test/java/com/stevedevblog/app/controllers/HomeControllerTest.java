@@ -44,13 +44,6 @@ public class HomeControllerTest {
         return containsString("navbar");
     }
 
-    private Matcher<String> hasIntroText() {
-        return containsString(
-                "Welcome to SteveDevBlog.com! My name is Steve and I am a Software Engineer. Here I write about personal projects I am working on and tutorials to help people like me.\n" +
-                        "                Right now this website is my main project, take a look at some of my Build Log posts to follow along."
-        );
-    }
-
     private Matcher<String> hasTitle() {
         return containsString("Steve's Dev Blog - Home");
     }

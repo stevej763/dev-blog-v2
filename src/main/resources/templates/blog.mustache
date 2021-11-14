@@ -1,0 +1,23 @@
+{{>partials/header}}
+{{>partials/navbar}}
+<main>
+    <h2 class="homepage-subheading">{{pageTitle}}</h2>
+    <div class="post-list">
+        {{#posts}}
+            <a class="post-card post-link" href="/blog-post/{{id}}">
+                <div class="main-card-container">
+                    <img class="post-image" src={{headerImageUrl}}>
+                    <div class="card-text-content">
+                        <h2 class="listed-post-title">{{title}}</h2>
+                        <p>{{description}}</p>
+                    </div>
+                </div>
+                <div class="card-info-content">
+                    <p>{{prettyDate}}</p>
+                    <p>Category: {{category.value}}</p>
+                </div>
+            </a>
+        {{/posts}}
+    </div>
+</main>
+{{>partials/footer}}
