@@ -1,7 +1,7 @@
 package com.stevedevblog.app.controllers;
 
+import com.stevedevblog.app.domain.BlogPostResponseList;
 import com.stevedevblog.app.domain.ExistingBlogPostResponse;
-import com.stevedevblog.app.domain.PersistedBlogPost;
 import com.stevedevblog.app.service.BlogPostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,15 +27,15 @@ public class HomeController {
 
     @GetMapping
     public String getHomepage(Model model) {
-        List<ExistingBlogPostResponse> latestPosts = blogPostService.getLatestPosts();
-        List<PersistedBlogPost> featuredPosts = getFeaturedPosts();
+        BlogPostResponseList latestPosts = new BlogPostResponseList(blogPostService.getLatestPosts());
+        BlogPostResponseList featuredPosts = new BlogPostResponseList(getFeaturedPosts());
         model.addAttribute("pageTitle", PAGE_TITLE);
         model.addAttribute("latestPosts", latestPosts);
         model.addAttribute("featuredPosts", featuredPosts);
         return "index";
     }
 
-    private List<PersistedBlogPost> getFeaturedPosts() {
+    private List<ExistingBlogPostResponse> getFeaturedPosts() {
         return Collections.emptyList();
     }
 
