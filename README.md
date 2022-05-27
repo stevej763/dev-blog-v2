@@ -1,8 +1,5 @@
 # Dev Blog v2
 
-## Access the live site at this address: [stevedevblog](https://stevedevblog.com)
-
-
 ## ToDo list:
 - ~~Document how I set up Docker, EC2, Nginx, Domain and LetsEncrypt~~
 - Add testing to everything - working on this
